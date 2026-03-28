@@ -16,10 +16,12 @@ warnings.filterwarnings("ignore")
 
 
 # ─────────────────────────────────────────
-# הורדת נתונים מ-Bybit
+# הורדת נתונים — Binance Futures
+# (מחירים זהים ל-Bybit, נגיש מכל מקום)
 # ─────────────────────────────────────────
 def fetch_candles(timeframe, limit):
-    exchange = ccxt.bybit()
+    exchange = ccxt.binance({"options": {"defaultType": "future"}})
+    symbol   = "BTC/USDT"   # Binance futures symbol
     tf_ms = {"1m":60000,"5m":300000,"15m":900000,
              "1h":3600000,"4h":14400000,"1d":86400000}
     ms = tf_ms.get(timeframe, 3600000)
@@ -27,7 +29,7 @@ def fetch_candles(timeframe, limit):
     all_candles = []
     while len(all_candles) < limit:
         batch = min(1000, limit - len(all_candles))
-        raw = exchange.fetch_ohlcv(SYMBOL, timeframe=timeframe, since=since, limit=batch)
+        raw = exchange.fetch_ohlcv(symbol, timeframe=timeframe, since=since, limit=batch)
         if not raw:
             break
         all_candles += raw
