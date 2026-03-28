@@ -20,8 +20,8 @@ warnings.filterwarnings("ignore")
 # (מחירים זהים ל-Bybit, נגיש מכל מקום)
 # ─────────────────────────────────────────
 def fetch_candles(timeframe, limit):
-    exchange = ccxt.binance({"options": {"defaultType": "future"}})
-    symbol   = "BTC/USDT"   # Binance futures symbol
+    exchange = ccxt.okx()
+    symbol   = "BTC/USDT"
     tf_ms = {"1m":60000,"5m":300000,"15m":900000,
              "1h":3600000,"4h":14400000,"1d":86400000}
     ms = tf_ms.get(timeframe, 3600000)
