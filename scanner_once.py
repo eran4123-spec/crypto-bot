@@ -103,6 +103,7 @@ def check_symbol(sym, last_signals):
         if not setups:
             print(f"  {sym} — אין setups")
             return None
+        print(f"  {sym} — נמצאו {len(setups)} setups, בודק כניסות...")
 
         entry_window = pd.Timedelta(minutes=15 * FVG_ENTRY_WINDOW)
         recent_15m   = df_15m.iloc[-70:]
