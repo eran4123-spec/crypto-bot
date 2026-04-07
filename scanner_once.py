@@ -105,7 +105,7 @@ def check_symbol(sym, last_signals):
             return None
 
         entry_window = pd.Timedelta(minutes=15 * FVG_ENTRY_WINDOW)
-        recent_15m   = df_15m.iloc[-20:]
+        recent_15m   = df_15m.iloc[-70:]
         last         = last_signals.get(sym, {})
 
         for i in range(len(recent_15m)):
